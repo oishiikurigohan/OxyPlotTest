@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             xmlns:local="clr-namespace:OxyPlotTest"
+             x:Class="OxyPlotTest.MainPage">
+
+    <ContentPage.Content>
+
+        <StackLayout>
+
+            <!-- StackLayout.OrientationがデフォルトのVerticalなので、
+                 BoxViewの高さはデフォルトの40となる。 
+                 BoxViewのデフォルト幅40は無視される。-->
+            <BoxView Color="Red" />
+
+            <!-- HorizontalOptionsを指定したことによりBoxViewのデフォルト幅40で表示される。-->
+            <BoxView Color="Orange" 
+                     HorizontalOptions="End"
+                     HeightRequest="10" />
+
+            <!-- WidthRequestは無視される。-->
+            <Label Text="ﾜｸﾜｸ o(^O^*=*^O^)o ﾄﾞｷﾄﾞｷ" 
+                   BackgroundColor="Aquamarine" 
+                   HeightRequest="20"
+                   WidthRequest="170" />
+
+            <!-- HorizontalOptionsを指定したことによりWidthRequestの設定値で表示される。 -->
+            <oxy:PlotView Model="{Binding Model}" 
+                          BackgroundColor="SkyBlue"
+                          HorizontalOptions="Start"
+                          HeightRequest="150"
+                          WidthRequest="100">
+                <oxy:PlotView.BindingContext>
+                    <local:LineChart />
+                </oxy:PlotView.BindingContext>
+            </oxy:PlotView>
+
+            <!-- Fillだけだとサイズが0になってるっぽい -->
+            <oxy:PlotView Model="{Binding Model}" 
+                          BackgroundColor="LightGray"
+                          HorizontalOptions="Fill"
+                          VerticalOptions="Fill">
+                <oxy:PlotView.BindingContext>
+                    <local:PieChart />
+                </oxy:PlotView.BindingContext>
+            </oxy:PlotView>
+
+            <!-- FillAndExpandだったら広げてくれるらしい。 -->
+            <oxy:PlotView Model="{Binding Model}" 
+                          BackgroundColor="Aqua"
+                          HorizontalOptions="FillAndExpand"
+                          VerticalOptions="FillAndExpand">
+                <oxy:PlotView.BindingContext>
+                    <local:PieChart />
+                </oxy:PlotView.BindingContext>
+            </oxy:PlotView>
+
+            <Button Text="NextPage"
+                    Clicked="ToNextPage"
+                    HorizontalOptions ="EndAndExpand"
+                    WidthRequest="100" />
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

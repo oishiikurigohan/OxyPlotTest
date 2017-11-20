@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             xmlns:local="clr-namespace:OxyPlotTest"
+             x:Class="OxyPlotTest.NextPage">
+    
+    <ContentPage.Content>
+        
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Gridのセルいっぱいに広がります。 -->
+            <oxy:PlotView Model="{Binding Model}" 
+                          BackgroundColor="PeachPuff"
+                          Grid.Row="0"
+                          Grid.Column="0">
+                <oxy:PlotView.BindingContext>
+                    <local:BarChart />
+                </oxy:PlotView.BindingContext>
+            </oxy:PlotView>
+
+            <!-- VerticalOptionsを指定したことにより、文字に沿った高さになる。 -->
+            <Label Text="やっぱりGridがいいよGridが。" 
+                   BackgroundColor="LightSalmon"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   VerticalOptions="End" />
+
+            <!-- HorizontalOptionsを指定したことにより、横幅がBoxViewのデフォルト値40になる。 -->
+            <BoxView Color="Chocolate" 
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     HorizontalOptions="Center" />
+
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    Text="PrevPage"
+                    Clicked="ToPrevPage"
+                    VerticalOptions="End"
+                    HorizontalOptions="End"
+                    HeightRequest="50"
+                    WidthRequest="100"/>
+
+        </Grid>
+        
+    </ContentPage.Content>
+    
+</ContentPage>
